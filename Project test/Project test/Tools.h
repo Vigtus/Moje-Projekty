@@ -34,3 +34,28 @@ class Generator: public Tool{
     private:
         bool g_digital;
 };
+
+class Multimeter: public Tool{
+    public:
+        Multimeter(int id, double price, std::string name, bool digital, double resolution, double accuracy, int range);
+        ~Multimeter();
+
+        void print_data();
+    private:
+        bool g_digital;
+        double resolution;
+        double accuracy;
+        int range;
+};
+
+class Oscilloscope : public Tool {
+    Oscilloscope(int id, double price, std::string name, bool digital, double resolution, double accuracy, int range);
+    ~Oscilloscope();
+
+    void print_data();
+private:
+    bool g_digital;
+    double resolution;
+    double accuracy;
+    int range;
+};
