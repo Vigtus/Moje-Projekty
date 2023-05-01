@@ -10,27 +10,44 @@ Engine::~Engine(){
 }
 
 void Engine::insert() {
-    std::string name;
-    double price;
-    bool is_digital;
-    std::cout << "\nNAME: ";
-    std::cin >> name;
-    std::cout << "\nPRICE: ";
-    std::cin>> price;
-    std::cout << "\nDIGITAL [1|0]: ";
-    std::cin >> is_digital;
-    tools[size] = new Generator(size+1,price,name,is_digital);
-    size++;
+    int choice = UI::base_menu();
+    switch (choice){
+        case 4:
+            for(int x = 0; x < tools.size(); x++){
+                tools[x]->print_data();
+            }
+            break;
+        case 5:
+            tools.push_back(UI::add(tools_id));
+            tools_id+1;
+            break;
+        case 6:
+            //znalezc element o takim id
+            int user_id = 5;
+            int position;
+            for(int x = 0; x < tools.size(); x++){
+                if(tools[x]->get_id() == user_id){
+                    position = x;
+                }
+            }
+            //usuwanie
+            break;
+        case 10:
+            is_running = false;
+            break;
+        default:
+            break;
+    }
 }
 
 void Engine::update() {
-    cout << "update\n";
+    //cout << "update\n";
 }
 
 void Engine::write() {
-    for(int x = 0; x < size; x++){
-        tools[x]->print_data();
-    }
+    // for(int x = 0; x < tools.size(); x++){
+    //     tools[x]->print_data();
+    // }
 }
 
 void Engine::clear(){

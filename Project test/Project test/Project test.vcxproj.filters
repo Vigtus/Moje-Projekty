@@ -27,12 +27,18 @@
     <ClCompile Include="Tools.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
     <ClInclude Include="Tools.h">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
   </ItemGroup>

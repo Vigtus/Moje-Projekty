@@ -42,10 +42,10 @@ class Multimeter: public Tool{
 
         void print_data();
     private:
-        bool g_digital;
-        double resolution;
-        double accuracy;
-        int range;
+        bool m_digital;
+        double m_resolution;
+        double m_accuracy;
+        int m_range;
 };
 
 class Oscilloscope : public Tool {
@@ -54,8 +54,8 @@ class Oscilloscope : public Tool {
 
     void print_data();
 private:
-    bool g_digital;
-    double resolution;
-    double accuracy;
-    int range;
+    bool o_digital;
+    double o_resolution;
+    double o_accuracy;
+    int o_range;
 };
