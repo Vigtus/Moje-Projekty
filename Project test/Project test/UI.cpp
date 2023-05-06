@@ -35,3 +35,17 @@ Tool_Template* UI::add(int id){
     }
     return 0;
 }
+
+Customer* UI::add_customer(int id){
+    std::string name;
+    std::string surname;
+    std::cout<<"Podaj imie: ";
+    std::cin>>name;
+    std::cout<<std::endl<< "Podaj nazwisko: ";
+    std::cin>>surname;
+    return new Customer(id,surname,name);
+}
+
+Rental* UI::add_rental(int id){
+    return new Rental(1,1,1,1,1,"1");
+}

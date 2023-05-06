@@ -127,14 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Customers.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Include.cpp" />
+    <ClCompile Include="Rental.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Źródło.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Customers.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Rental.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>

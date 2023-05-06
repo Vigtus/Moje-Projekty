@@ -1,2 +1,9 @@
-﻿  UI.cpp
+﻿  Customers.cpp
+  Engine.cpp
+  Include.cpp
+  Rental.cpp
+  UI.cpp
+C:\Users\KACPER\OneDrive\Pulpit\SZKOŁA\Projekty na githuba\Moje-Projekty\Project test\Project test\UI.cpp(16,9): warning C4101: "range": lokalna zmienna, do której nie istnieje odwołanie
+  Źródło.cpp
+  Generowanie kodu...
   Project test.vcxproj -> C:\Users\KACPER\OneDrive\Pulpit\SZKOŁA\Projekty na githuba\Moje-Projekty\Project test\x64\Debug\Project test.exe
