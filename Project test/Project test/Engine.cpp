@@ -3,6 +3,10 @@
 using namespace std;
 
 Engine::Engine(){
+    customers = FileMenager::read_customes();
+    if(customers.size() > 0){
+        customers_id = customers[customers.size()-1]->get_id() + 1;
+    }
 }
 
 Engine::~Engine(){
@@ -13,6 +17,9 @@ void Engine::insert() {
     int choice = UI::base_menu();
     int user_id = 5;
     int position;
+    //rentals
+    //tools
+    //customers
     switch (choice){
         case 1:
             //Wypozyczenie

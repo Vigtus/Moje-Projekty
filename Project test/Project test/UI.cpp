@@ -43,7 +43,11 @@ Customer* UI::add_customer(int id){
     std::cin>>name;
     std::cout<<std::endl<< "Podaj nazwisko: ";
     std::cin>>surname;
+    std::ofstream file(PATH,std::ios::app);
+    file << "$CUSTOMER" << '|' << id << '|' << surname << '|' << name << "|" <<"\n";
+    file.close();
     return new Customer(id,surname,name);
+    //Zapisywanie
 }
 
 Rental* UI::add_rental(int id){

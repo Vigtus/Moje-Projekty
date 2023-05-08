@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Customers.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="FileMenager.cpp" />
     <ClCompile Include="Include.cpp" />
     <ClCompile Include="Rental.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Customers.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="FileMenager.h" />
     <ClInclude Include="Rental.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Tools.h" />
