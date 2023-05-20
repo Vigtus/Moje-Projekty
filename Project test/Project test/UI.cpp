@@ -19,11 +19,14 @@ Tool_Template* UI::add(int id){
     std::cout << "\nNAME: ";
     std::cin >> name;
     std::cout<< "\nSELECT TOOL TYPE: \n1.GENERATOR \n 2.MULTIMETR \n 3.OSCILOSCOPE\n WYBOR:: ";
-    std::cin >> tool_type;
+    std::cin >> tool_type;            
+    std::ofstream file(PATH,std::ios::app);
     switch(tool_type){
         case 1:
             std::cout << "\nDIGITAL [1|0]: ";
             std::cin >> is_digital;
+            file << "$GENERATOR" << '|' << id << '|' << price << '|' << name << "|" << is_digital << "|" <<"\n";
+            file.close();
             return new Generator(id,price,name,is_digital);
             break;
         case 2:
@@ -51,5 +54,15 @@ Customer* UI::add_customer(int id){
 }
 
 Rental* UI::add_rental(int id){
-    return new Rental(1,1,1,1,1,"1");
+    int tool_id, customer_id, c_days;
+    std::string date;
+    std::cout<<"Wprowadz kolejno: tool_id, customer_id, dni, date" << std::endl;
+    std::cin>>tool_id;
+    std::cin>>customer_id;
+    std::cin>>c_days;
+    std::cin>> date;
+    std::ofstream file(PATH,std::ios::app);
+    file << "$RENTAL" << '|' << id << '|' << tool_id << '|' << customer_id << "|" << "1" << "|" << c_days << "|"<<date << "|" << "\n";
+    file.close();
+    return new Rental(id,tool_id,customer_id,1,c_days,date);
 }
