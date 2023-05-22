@@ -1,2 +1,5 @@
-﻿  Engine.cpp
-  Project test.vcxproj -> C:\Users\LEGION\Desktop\Studia\Projekty C++(laptop)\Moje-Projekty\Project test\x64\Debug\Project test.exe
+﻿  Include.cpp
+  UI.cpp
+C:\Users\LEGION\source\repos\Moje-Projekty\Project test\Project test\UI.cpp(16,9): warning C4101: "range": lokalna zmienna, do której nie istnieje odwołanie
+  Generowanie kodu...
+  Project test.vcxproj -> C:\Users\LEGION\Source\Repos\Moje-Projekty\Project test\x64\Debug\Project test.exe

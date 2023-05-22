@@ -19,11 +19,14 @@ Tool_Template* UI::add(int id){
     std::cout << "\nNAME: ";
     std::cin >> name;
     std::cout<< "\nSELECT TOOL TYPE: \n1.GENERATOR \n 2.MULTIMETR \n 3.OSCILOSCOPE\n WYBOR:: ";
-    std::cin >> tool_type;
+    std::cin >> tool_type;            
+    std::ofstream file(PATH,std::ios::app);
     switch(tool_type){
         case 1:
             std::cout << "\nDIGITAL [1|0]: ";
             std::cin >> is_digital;
+            file << "$GENERATOR" << '|' << id << '|' << price << '|' << name << "|" << is_digital << "|" <<"\n";
+            file.close();
             return new Generator(id,price,name,is_digital);
             break;
         case 2:
@@ -51,5 +54,73 @@ Customer* UI::add_customer(int id){
 }
 
 Rental* UI::add_rental(int id){
-    return new Rental(1,1,1,1,1,"1");
+    int tool_id, customer_id, c_days;
+    std::string date;
+    std::cout<<"Wprowadz kolejno: tool_id, customer_id, dni, date" << std::endl;
+    std::cin>>tool_id;
+    std::cin>>customer_id;
+    std::cin>>c_days;
+    std::cin>> date;
+    std::ofstream file(PATH,std::ios::app);
+    file << "$RENTAL" << '|' << id << '|' << tool_id << '|' << customer_id << "|" << "1" << "|" << c_days << "|"<<date << "|" << "\n";
+    file.close();
+    return new Rental(id,tool_id,customer_id,1,c_days,date);
+}
+
+void UI::delete_data(std::string type, int id){
+    std::vector<std::string> lines_to_add;
+    std::string line;
+    std::vector<std::string> elements;
+    std::ifstream file(PATH);
+    while(std::getline(file,line)){
+        std::string delimiter = "|";
+        std::string linia = line;
+        size_t pos = 0;
+        std::string token;
+        while ((pos = line.find(delimiter)) != std::string::npos) {
+            token = line.substr(0, pos);
+            elements.push_back(token);
+            line.erase(0, pos + delimiter.length());
+        }
+        if(elements.size()>0){
+            if(elements[0] == "$GENERATOR" || elements[0] == "$OSCYLOSCOPE"){
+                if (type != "tool")
+                {
+                    lines_to_add.push_back(linia);
+                }else{
+                    if(std::stoi(elements[1]) != id){
+                        lines_to_add.push_back(linia);
+                    }
+                }
+            }
+            if(elements[0] == "$CUSTOMER"){
+                if (type != "customer")
+                {
+                    lines_to_add.push_back(linia);
+                }else{
+                    if(std::stoi(elements[1]) != id){
+                        lines_to_add.push_back(linia);
+                    }
+                }
+            }
+            if(elements[0] == "$RENTAL"){
+                if (type != "rental")
+                {
+                    lines_to_add.push_back(linia);
+                }else{
+                    if(std::stoi(elements[1]) != id){
+                        lines_to_add.push_back(linia);
+                    }
+                }
+            }
+        }
+        elements.clear();
+    }
+    file.close();
+    //Musimy zapisac wszystko do pliku na nowo
+    std::ofstream file_to_save(PATH);
+    for(int x = 0; x < lines_to_add.size(); x++){
+        file_to_save << lines_to_add[x];
+    }
+    file_to_save.close();
 }

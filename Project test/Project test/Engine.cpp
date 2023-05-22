@@ -7,6 +7,14 @@ Engine::Engine(){
     if(customers.size() > 0){
         customers_id = customers[customers.size()-1]->get_id() + 1;
     }
+    tools = FileMenager::read_tools();
+    if(tools.size() > 0){
+        tools_id = tools[tools.size()-1]->get_id() + 1;
+    }
+    rentals = FileMenager::read_rentals();
+    if(rentals.size() > 0){
+        rentals_id = rentals[rentals.size() - 1] ->get_id() + 1;
+    }
 }
 
 Engine::~Engine(){
@@ -23,10 +31,20 @@ void Engine::insert() {
     switch (choice){
         case 1:
             //Wypozyczenie
-            rentals.push_back(UI::add_rental(4));
+            rentals.push_back(UI::add_rental(rentals_id));
+            rentals_id++;
             break;
         case 2:
-            //Zakonczenie wypozczenia
+            std::cout<<"podaj ID: ";
+            std::cin>>user_id;
+            for(int x = 0; x < rentals.size(); x++){
+                if(rentals[x]->get_id() == user_id){
+                    position = x;
+                }
+            }
+            //Po linijce
+            // Jezeli id = user_id i $Rental to to pomijamy, reszte piszemy
+            rentals.erase(rentals.begin()+position);
             break;
         case 3:
             //Lista wypozyczen
@@ -38,7 +56,7 @@ void Engine::insert() {
                     }
                 }
                 for(int h = 0; h < customers.size(); h++){
-                    if(customers[h]->get_id() == rentals[x]->get_tool_id()){
+                    if(customers[h]->get_id() == rentals[x]->get_customer_id()){
                         y = h;
                     }
                 }
@@ -62,6 +80,7 @@ void Engine::insert() {
                     position = x;
                 }
             }
+            //Szukamy zeby sie id zgadzalo i zeb $Generator lub multiumetr 
             tools.erase(tools.begin()+position);
             break;
         case 7:
@@ -81,9 +100,13 @@ void Engine::insert() {
                     position = x;
                 }
             }
+            UI::delete_data("customer",customers[position]->get_id());
             customers.erase(customers.begin()+position);
             break;
         case 10:
+            //Musimy usunac cala zawartosc bazy danych
+            //napisac ja na nowo
+            //bo moze byc usuwane 
             is_running = false;
             break;
         default:

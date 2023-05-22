@@ -12,9 +12,7 @@ Rental::Rental(int c_id, int c_tool_id, int c_customer_id, double c_cost, int c_
 
 
 void Rental::print(Tool_Template *tool, Customer *customer){
-    std::cout<< "ID: " << id << " | Tool: ";
-    tool->print_data();
-    std::cout << " | Customer: ";
-    customer->print();
-    std::cout << "Start: " << start_date << " | Days: " << days << " | Total cost: " << days*tool->get_price() << std::endl;
+    std::cout<< "ID: " << id << " | Tool: " << tool->get_id();
+    std::cout << " | Customer: " << customer->get_id();
+    std::cout << "| Start: " << start_date << " | Days: " << days << " | Total cost: " << days*tool->get_price() << std::endl;
 }
