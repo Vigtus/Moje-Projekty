@@ -10,5 +10,5 @@ class UI{
         static Tool_Template* add(int id);
         static Customer* add_customer(int id);
         static Rental* add_rental(int id);
-    private:
+        static void delete_data();
 };
