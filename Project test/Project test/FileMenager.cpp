@@ -45,9 +45,13 @@ std::vector<Tool_Template*> FileMenager::read_tools(){
         }
         if(elements.size()>0){
             if(elements[0] == "$GENERATOR"){
-                //create new customer
-                //id, surname, name
-                vectorek.push_back(new Generator(std::stoi(elements[1]),double(std::stoi(elements[2])),elements[3],bool(std::stoi(elements[4]))));
+                vectorek.push_back(new Generator(std::stoi(elements[1]),double(std::stoi(elements[2])), elements[3] ,bool(std::stoi(elements[4]))));
+            }
+            if (elements[0] == "$MULTIMETR") {
+                vectorek.push_back(new Multimeter(std::stoi(elements[1]), double(std::stoi(elements[2])), elements[3], bool(std::stoi(elements[4])), double(std::stoi(elements[5])),  double(std::stoi(elements[6])),  std::stoi(elements[7])));
+            }
+            if (elements[0] == "$OSCILLOSCOPE") {
+                vectorek.push_back(new Oscilloscope(std::stoi(elements[1]), double(std::stoi(elements[2])), elements[3], bool(std::stoi(elements[4])), double(std::stoi(elements[5])),  double(std::stoi(elements[6])),  std::stoi(elements[7])));
             }
         }
         elements.clear();

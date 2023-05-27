@@ -44,6 +44,7 @@ void Engine::insert() {
             }
             //Po linijce
             // Jezeli id = user_id i $Rental to to pomijamy, reszte piszemy
+            UI::delete_data("rental", rentals[position]->get_id());
             rentals.erase(rentals.begin()+position);
             break;
         case 3:
@@ -81,6 +82,7 @@ void Engine::insert() {
                 }
             }
             //Szukamy zeby sie id zgadzalo i zeb $Generator lub multiumetr 
+            UI::delete_data("tool",tools[position]->get_id());
             tools.erase(tools.begin()+position);
             break;
         case 7:
@@ -100,6 +102,7 @@ void Engine::insert() {
                     position = x;
                 }
             }
+            UI::delete_data("customer",customers[position]->get_id());
             customers.erase(customers.begin()+position);
             break;
         case 10:

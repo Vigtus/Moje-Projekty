@@ -37,6 +37,7 @@ Multimeter::Multimeter(int id, double price, std::string name, bool digital, dou
     m_accuracy=accuracy;
     m_range=range;
 }
+
 void Multimeter::print_data() {
     std::cout << "NAME: " << get_name() << " | ID: " << get_id() << " | PRICE: " << get_price() << " | DIGITAL?" << m_digital << " | RESOLUTION: " << m_resolution << " | ACCURACY: "<< m_accuracy << " | RANGE: " << m_range << std::endl;
 }

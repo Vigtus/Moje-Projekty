@@ -49,6 +49,7 @@ class Multimeter: public Tool{
 };
 
 class Oscilloscope : public Tool {
+public:
     Oscilloscope(int id, double price, std::string name, bool digital, double resolution, double accuracy, int range);
     ~Oscilloscope();
 
