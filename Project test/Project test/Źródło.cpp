@@ -9,10 +9,7 @@ int main(){
 
     while(engine->running()){
             engine->insert();   //Wprowadzania
-            engine->update();   //Update
-            engine->write();    //Write
     }
-    engine->clear();
-
+    delete engine;
     return 0;
 }

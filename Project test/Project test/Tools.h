@@ -1,7 +1,13 @@
 #pragma once
 #include "./Include.cpp"
 
-
+/*
+Wirtualna klasa bêd¹ca 
+przepisem naszego toola
+ma ona funkcje, ktore musza
+zostac nadpisane przez klasy
+ktore ja dziedzicza  
+*/
 class Tool_Template {
     public:
         virtual double get_price(){return 0;}
@@ -10,6 +16,10 @@ class Tool_Template {
         virtual void print_data(){}
 };
 
+/*
+Klasa Tool czyli narzedzie
+ma podstawowe atrybuty, ktore ma kazde narzedzie
+*/
 class Tool :public Tool_Template{
     public:
         Tool(int id, double price, std::string name);
@@ -24,6 +34,7 @@ class Tool :public Tool_Template{
         double tool_price;
         std::string tool_name;
 };
+
 
 class Generator: public Tool{
     public:

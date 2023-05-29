@@ -2,6 +2,17 @@
 
 int UI::base_menu(){
     int wybor;
+    std::cout<< "\n --------------------- \n";
+    std::cout << "1.Dodaj wyporzyczenie  \n" \
+        "2.Usun wyporzyczenie  \n" \
+        "3.Lista wyporzyczen  \n" \
+        "4.Lista narzedzie  \n" \
+        "5.Dodaj narzedzie  \n" \
+        "6.Usun narzedzie  \n" \
+        "7.Lista klientow  \n" \
+        "8.Dodaj klienta  \n" \
+        "9.Usun klienta  \n" \
+        "10. Zakoncz program  \n";
     std::cout << "Wybierz: ";
     std::cin >> wybor;
     std::cout<< std::endl;
@@ -76,12 +87,22 @@ Customer* UI::add_customer(int id){
     //Zapisywanie
 }
 
-Rental* UI::add_rental(int id){
+Rental* UI::add_rental(int id, std::vector<Customer*> &customers, std::vector<Tool_Template*> &tools){
     int tool_id, customer_id, c_days;
     std::string date;
-    std::cout<<"Wprowadz kolejno: tool_id, customer_id, dni, date" << std::endl;
+    std::cout<<"Wprowadz kolejno: tool_id ENTER, customer_id ENTER, dni ENTER, date ENTER" << std::endl;
     std::cin>>tool_id;
+    bool is_tool = false;
+    for(int x = 0; x < tools.size(); x++){
+        if(tools[x]->get_id() == tool_id)is_tool=true;
+    }
+    if(!is_tool){return 0;}
     std::cin>>customer_id;
+    bool is_customer = false;
+    for (int x = 0; x < customers.size(); x++) {
+        if (customers[x]->get_id() == customer_id)is_customer = true;
+    }
+    if (!is_customer) { return 0; }
     std::cin>>c_days;
     std::cin>> date;
     std::ofstream file(PATH,std::ios::app);

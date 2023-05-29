@@ -3,6 +3,9 @@
 #include "./Tools.h"
 #include "./Customers.h"
 
+/*
+Klasa wypozyczenie, ma atrybuty
+*/
 class Rental{
 public:
     Rental(int c_id, int c_tool_id, int c_customer_id, double c_cost, int c_days, std::string c_start_date);

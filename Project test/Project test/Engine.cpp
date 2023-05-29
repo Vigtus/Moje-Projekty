@@ -18,21 +18,33 @@ Engine::Engine(){
 }
 
 Engine::~Engine(){
-    cout << "destruktor\n";
+    for(int x = 0; x < tools.size(); x++){
+        delete tools[x];
+    }
+    for (int x = 0; x < customers.size(); x++) {
+        delete customers[x];
+    }
+    for (int x = 0; x < rentals.size(); x++) {
+        delete rentals[x];
+    }
 }
 
 void Engine::insert() {
     int choice = UI::base_menu();
     int user_id = 5;
-    int position;
-    //rentals
-    //tools
-    //customers
+    int position = -1;
+    Rental *new_rental;
     switch (choice){
         case 1:
             //Wypozyczenie
-            rentals.push_back(UI::add_rental(rentals_id));
-            rentals_id++;
+            new_rental = UI::add_rental(rentals_id, customers, tools);
+            if(new_rental != 0){
+                rentals.push_back(new_rental);
+                rentals_id++;
+                std::cout << "\nDodano wyporzyczenie\n";
+            }else{
+                std::cout << "\033[95mERROR\033[0m::BAD ID IN CUSTOMERS ID OR TOOLS ID\n";
+            }
             break;
         case 2:
             std::cout<<"podaj ID: ";
@@ -42,10 +54,13 @@ void Engine::insert() {
                     position = x;
                 }
             }
-            //Po linijce
-            // Jezeli id = user_id i $Rental to to pomijamy, reszte piszemy
-            UI::delete_data("rental", rentals[position]->get_id());
-            rentals.erase(rentals.begin()+position);
+            if(position < 0){
+                std::cout << "\033[93mERROR\033[0m::BAD ID\n";
+            }else{
+                UI::delete_data("rental", rentals[position]->get_id());
+                rentals.erase(rentals.begin()+position);
+                            std::cout << "\nWypozyczenie usunieto z listy\n";
+            }
             break;
         case 3:
             //Lista wypozyczen
@@ -72,6 +87,7 @@ void Engine::insert() {
         case 5:
             tools.push_back(UI::add(tools_id));
             tools_id+=1;
+            std::cout << "\nDodano narzedzie\n";
             break;
         case 6:
             std::cout<<"podaj ID: ";
@@ -81,9 +97,13 @@ void Engine::insert() {
                     position = x;
                 }
             }
-            //Szukamy zeby sie id zgadzalo i zeb $Generator lub multiumetr 
-            UI::delete_data("tool",tools[position]->get_id());
-            tools.erase(tools.begin()+position);
+            if(position < 0){
+                std::cout << "\033[93mERROR\033[0m::BAD ID\n";
+            }else{
+                UI::delete_data("tool",tools[position]->get_id());
+                tools.erase(tools.begin()+position);
+                std::cout << "\nUsunieto narzedzie\n";
+            }
             break;
         case 7:
             for (int x = 0; x < customers.size(); x++) {
@@ -93,6 +113,7 @@ void Engine::insert() {
         case 8:
             customers.push_back(UI::add_customer(customers_id));
             customers_id++;
+            std::cout << "\nDodano klienta\n";
             break;
         case 9:
             std::cout<<"podaj ID: ";
@@ -102,13 +123,15 @@ void Engine::insert() {
                     position = x;
                 }
             }
-            UI::delete_data("customer",customers[position]->get_id());
-            customers.erase(customers.begin()+position);
+            if(position < 0){
+                std::cout << "\033[93mERROR\033[0m::BAD ID\n";
+            }else{
+                UI::delete_data("customer",customers[position]->get_id());
+                customers.erase(customers.begin()+position);
+                std::cout << "\nUsunieto klienta\n";
+            }
             break;
         case 10:
-            //Musimy usunac cala zawartosc bazy danych
-            //napisac ja na nowo
-            //bo moze byc usuwane 
             is_running = false;
             break;
         default:
@@ -116,18 +139,3 @@ void Engine::insert() {
     }
 }
 
-void Engine::update() {
-    //cout << "update\n";
-}
-
-void Engine::write() {
-    // for(int x = 0; x < tools.size(); x++){
-    //     tools[x]->print_data();
-    // }
-}
-
-void Engine::clear(){
-    cout << "Czyszczenie\n";
-    //Bedziemy usuwac wszytkie wskazniki z "new"
-    //I ta funckja bedzie po pêtli
-}

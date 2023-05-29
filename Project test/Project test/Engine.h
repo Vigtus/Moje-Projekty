@@ -8,14 +8,13 @@
 
 class Engine {
     public:
+        /* Konstruktor, odczyt z bazy danych/pamieci i przypisanie do vectorow */
         Engine();
         ~Engine();
 
+        /*G³ówna funckcja, w niej odbywa sie wszystko*/
         void insert();
-        void update();
-        void write();
-        void clear();
-
+        /*Funkcja sprawdzajaca, czy pentla ma sie dalej wykonywac*/
         bool running() { return is_running; };
     private:
         bool is_running = true;

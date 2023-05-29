@@ -1,6 +1,7 @@
 #pragma once
 #include "./Include.cpp"
 
+/*Klasa klient*/
 class Customer{
 public:
 	Customer(int id,std::string l_name,std:: string s_name);

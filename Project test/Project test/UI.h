@@ -6,10 +6,14 @@
 
 class UI{
     public:
+        /* Wyœwietlenie podstawowego menu */
         static int base_menu();
+        /* Dodanie narzêdzia, funckcja zwraca new Tool...*/
         static Tool_Template* add(int id);
+        /* Dodanie klienta, funkcja zwraca new Customer */
         static Customer* add_customer(int id);
-        static Rental* add_rental(int id);
+        /* Dodanie wyporzyczenie, funkcja zwraca new Rental lub 0 jesli dane wejsciowe sa nieprawidlowe */
+        static Rental* add_rental(int id, std::vector<Customer*> &customers, std::vector<Tool_Template*> &tools);
 
 
         /*
@@ -18,5 +22,4 @@ class UI{
         Pliku nie dopisuje tego narzsedzia/klienta/wypozyczenia
         */
         static void delete_data(std::string type, int id);
-    private:
 };
